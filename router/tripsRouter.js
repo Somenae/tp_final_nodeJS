@@ -9,6 +9,6 @@ router.get("/edit/:id", controller.edit);
 router.get("/toggle-done/:id", controller.toggleDone);
 router.post("/store", controller.store);
 router.post("/update/:id", controller.update);
-router.delete("/delete/:id", controller.delete);
+router.delete("/:id", controller.delete);
 
 module.exports = router;

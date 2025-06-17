@@ -1,4 +1,5 @@
+<%- contentFor('title')%>Modifier un voyage 
 <%- contentFor("main")%>
-<form action="/tasks/update/<%= task.id%>" method="post">
-  <%- include('_taskForm') %>
+<form action="/api/trips/update/<%= trip.id%>" method="post">
+  <%- include('_tripsForm') %>
 </form>

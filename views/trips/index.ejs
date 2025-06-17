@@ -4,29 +4,34 @@
   <thead>
     <tr>
       <th>Id</th>
-      <th>Title</th>
-      <th>Desc</th>
-      <th>Start</th>
-      <th>End</th>
-      <th>Done</th>
-      <th href="/tasks/create">Create</th>
+      <th>Départ</th>
+      <th>Destination</th>
+      <th>Date de départ</th>
+      <th>Date d'arrivée</th>
+      <th>Prix</th>
+      <th>Statut</th>
+      <th>Nbr de places</th>
+      <th href="/trips/create">Create</th>
     </tr>
   </thead>
 
   <tbody>
-    <% for( let trip in trips ) { %>
+    <% trips.forEach(trip => { %>
     <tr>
-      <td><%= trip.id %></td>
-      <td><%= trip.title %></td>
-      <td><%= trip.description %></td>
-      <td><%= trip.date_debut %></td>
-      <td><%= trip.date_fin %></td>
+      <td><%= trip._id %></td>
+      <td><%= trip.departure %></td>
+      <td><%= trip.destination %></td>
+      <td><%= trip.departureDateTime %></td>
+      <td><%= trip.arrivalDateTime %></td>
+      <td><%= trip.price %></td>
+      <td><%= trip.status %></td>
+      <td><%= trip.places %></td>
+      <!-- <td>
+        <a href="/api/trips/toggle-done/< trip.id %>">< trip.done%></a>
+      </td> -->
       <td>
-        <a href="/trips/toggle-done/<%= trip.id %>"><%=trip.done%></a>
-      </td>
-      <td>
-        <a href="/trips/edit/<%= task.id%>">Edit</a>
-        <form action="/trips/delete/<%= task.id%>" method="POST">
+        <a href="/api/trips/edit/<%= trip.id%>">Edit</a>
+        <form action="/api/trips/<%= trip.id%>" method="POST">
           <input type="hidden" name="_method" value="DELETE" />
           <input
             type="submit"
@@ -36,6 +41,6 @@
         </form>
       </td>
     </tr>
-    <% }; %>
+    <% }); %>
   </tbody>
 </table>

@@ -11,7 +11,7 @@ class TripsService {
     try {
       const allTrips = await this.tripsRepository.findAll();
       if (!allTrips || allTrips.length === 0) {
-        return new Error("No trips found");
+        return []
       }
       return allTrips;
     } catch (error) {
@@ -31,8 +31,16 @@ class TripsService {
     }
   }
 
-  async createTravel(TravelData) {
+  async createTrip(TravelData) {
     try {
+      if (!TravelData) {
+        return new Error("No datas sent")
+      }
+
+      if (TravelData.price) {
+        TravelData.price = parseFloat(TravelData.price);
+      }
+
       const newTravel = await this.tripsRepository.create(TravelData);
       if (!newTravel) {
         return new Error("No travels found");
@@ -49,20 +57,18 @@ class TripsService {
       if (!travel) {
         throw new Error("Travel not found");
       }
-      const updated = await this.tripsRepository.update(travelData, {
-        where: { id },
-      });
+      const updated = await this.tripsRepository.update(id, travelData);
       if (!updated) {
         return new Error("No travels found");
       }
 
-      return { message: "Travel updated successfully" };
+      return { message: "Trip updated successfully" };
     } catch (error) {
       throw new Error("Error updating travel: " + error.message);
     }
   }
 
-  async editTravels(id) {
+  async editTrips(id) {
     try {
       const travel = await this.tripsRepository.findByPk(id);
       if (!travel) {
@@ -82,13 +88,13 @@ class TripsService {
     }
   }
 
-  async deleteTravel(id) {
+  async deleteTrip(id) {
     try {
       const travel = await this.tripsRepository.findByPk(id);
       if (!travel) {
         throw new Error("Travel not found");
       }
-      await this.tripsRepository.delete({ where: { id } });
+      await this.tripsRepository.delete(id);
       return { message: "Travel deleted successfully" };
     } catch (error) {
       throw new Error("Error deleting travel: " + error.message);

@@ -10,15 +10,15 @@ class tripsRepository {
   }
 
   async findByPk(id) {
-    return this.trips.findByPk(id);
+    return this.trips.findById(id);
   }
 
   async create(taskData) {
     return this.trips.create(taskData);
   }
 
-  async update(taskData, options) {
-    return this.trips.update(taskData, options);
+  async update(id, options) {
+    return this.trips.findByIdAndUpdate(id, options);
   }
 
   async delete(options) {
