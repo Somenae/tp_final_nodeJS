@@ -2,7 +2,7 @@ const express = require("express");
 const dotenv = require('dotenv');
 const expressLayout = require("express-ejs-layouts");
 const methodOverride = require("method-override");
-const taskRouter = require("./router/tasksRouter");
+const tripsRouter = require("./router/tripsRouter");
 const connectDB = require('./configs/db');
 // Récupération fichier environnement
 dotenv.config();
@@ -29,7 +29,7 @@ app.set("layout extractStyles", true);
 
 app.use(cors());
 
-app.use("/tasks", taskRouter);
+app.use("/api/trips", tripsRouter);
 
 app.listen(port, () => {
   console.log(`Server run  http://localhost:${port}`);

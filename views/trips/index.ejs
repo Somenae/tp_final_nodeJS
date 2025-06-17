@@ -1,4 +1,4 @@
-<%- contentFor('title') %>Liste des tâches <%- contentFor('main') %>
+<%- contentFor('title') %>Liste des voyages <%- contentFor('main') %>
 <h1>Mon index</h1>
 <table>
   <thead>
@@ -14,19 +14,19 @@
   </thead>
 
   <tbody>
-    <% tasks.forEach(function(task) { %>
+    <% for( let trip in trips ) { %>
     <tr>
-      <td><%= task.id %></td>
-      <td><%= task.title %></td>
-      <td><%= task.description %></td>
-      <td><%= task.date_debut %></td>
-      <td><%= task.date_fin %></td>
+      <td><%= trip.id %></td>
+      <td><%= trip.title %></td>
+      <td><%= trip.description %></td>
+      <td><%= trip.date_debut %></td>
+      <td><%= trip.date_fin %></td>
       <td>
-        <a href="/tasks/toggle-done/<%= task.id %>"><%=task.done%></a>
+        <a href="/trips/toggle-done/<%= trip.id %>"><%=trip.done%></a>
       </td>
       <td>
-        <a href="/tasks/edit/<%= task.id%>">Edit</a>
-        <form action="/tasks/delete/<%= task.id%>" method="POST">
+        <a href="/trips/edit/<%= task.id%>">Edit</a>
+        <form action="/trips/delete/<%= task.id%>" method="POST">
           <input type="hidden" name="_method" value="DELETE" />
           <input
             type="submit"
@@ -36,6 +36,6 @@
         </form>
       </td>
     </tr>
-    <% }) %>
+    <% }; %>
   </tbody>
 </table>

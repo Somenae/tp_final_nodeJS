@@ -1,27 +1,27 @@
-const travelRepository = require("../repositories/travelRepository");
+const tripsRepository = require("../repositories/tripsRepository");
 const moment = require("moment");
 
-class TravelService {
+class TripsService {
   constructor() {
-    this.travelRepository = travelRepository;
+    this.tripsRepository = tripsRepository;
     this.moment = moment;
   }
 
-  async getAllTravels() {
+  async getAllTrips() {
     try {
-      const allTravels = await this.travelRepository.findAll();
-      if (!allTravels || allTravels.length === 0) {
-        return new Error("No travels found");
+      const allTrips = await this.tripsRepository.findAll();
+      if (!allTrips || allTrips.length === 0) {
+        return new Error("No trips found");
       }
-      return allTravels;
+      return allTrips;
     } catch (error) {
-      throw new Error("Error fetching travels: " + error.message);
+      throw new Error("Error fetching trips: " + error.message);
     }
   }
 
   async getTravelById(id) {
     try {
-      const travel = await this.travelRepository.findByPk(id);
+      const travel = await this.tripsRepository.findByPk(id);
       if (!travel) {
         return new Error("No travels found");
       }
@@ -33,7 +33,7 @@ class TravelService {
 
   async createTravel(TravelData) {
     try {
-      const newTravel = await this.travelRepository.create(TravelData);
+      const newTravel = await this.tripsRepository.create(TravelData);
       if (!newTravel) {
         return new Error("No travels found");
       }
@@ -45,11 +45,11 @@ class TravelService {
 
   async updateTravel(id, travelData) {
     try {
-      const travel = await this.travelRepository.findByPk(id);
+      const travel = await this.tripsRepository.findByPk(id);
       if (!travel) {
         throw new Error("Travel not found");
       }
-      const updated = await this.travelRepository.update(travelData, {
+      const updated = await this.tripsRepository.update(travelData, {
         where: { id },
       });
       if (!updated) {
@@ -64,16 +64,16 @@ class TravelService {
 
   async editTravels(id) {
     try {
-      const travel = await this.travelRepository.findByPk(id);
+      const travel = await this.tripsRepository.findByPk(id);
       if (!travel) {
         throw new Error("Travel not found");
       }
 
-      if (travel.start_date) {
-        travel.start_date_formated = moment(travel.start_date).format("YYYY-MM-DD");
+      if (travel.departureDateTime) {
+        travel.departureDateTime = moment(travel.departureDateTime).format("YYYY-MM-DD");
       }
-      if (travel.end_date) {
-        travel.end_date_formated = moment(travel.end_date).format("YYYY-MM-DD");
+      if (travel.arrivalDateTime) {
+        travel.departureDateTime = moment(travel.arrivalDateTime).format("YYYY-MM-DD");
       }
 
       return travel;
@@ -84,11 +84,11 @@ class TravelService {
 
   async deleteTravel(id) {
     try {
-      const travel = await this.travelRepository.findByPk(id);
+      const travel = await this.tripsRepository.findByPk(id);
       if (!travel) {
         throw new Error("Travel not found");
       }
-      await this.travelRepository.delete({ where: { id } });
+      await this.tripsRepository.delete({ where: { id } });
       return { message: "Travel deleted successfully" };
     } catch (error) {
       throw new Error("Error deleting travel: " + error.message);
@@ -97,7 +97,7 @@ class TravelService {
 
   async toggleDone(id) {
     try {
-      const travel = await this.travelRepository.findByPk(id);
+      const travel = await this.tripsRepository.findByPk(id);
       if (!travel) {
         throw new Error("Travel not found");
       }
@@ -110,4 +110,4 @@ class TravelService {
   }
 }
 
-module.exports = new TravelService();
+module.exports = new TripsService();

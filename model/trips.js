@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const travelsSchema = new mongoose.Schema({
+const tripsSchema = new mongoose.Schema({
   departureDateTime: {
       type: Date,
       required: true
@@ -46,4 +46,4 @@ const travelsSchema = new mongoose.Schema({
 });
 
 // Export du modèle
-module.exports = mongoose.model('Travels', travelsSchema);
+module.exports = mongoose.model('Trips', tripsSchema);

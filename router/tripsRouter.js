@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
-const controller = require("../controller/tasksController");
+const controller = require("../controller/tripsController");
 
-router.get("/", controller.index);
+router.get("", controller.index);
 router.get("/create", controller.create);
 router.get("/edit/:id", controller.edit);
 
