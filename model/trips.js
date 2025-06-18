@@ -1,12 +1,13 @@
 const mongoose = require('mongoose');
+const DateOnly = require('mongoose-dateonly')(mongoose);
 
 const tripsSchema = new mongoose.Schema({
   departureDateTime: {
-      type: Date,
+      type: DateOnly,
       required: true
   },
   arrivalDateTime: {
-      type: Date,
+      type: DateOnly,
       required: true
   },
   departure: {

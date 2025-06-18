@@ -79,7 +79,7 @@ class TripsService {
         travel.departureDateTime = moment(travel.departureDateTime).format("YYYY-MM-DD");
       }
       if (travel.arrivalDateTime) {
-        travel.departureDateTime = moment(travel.arrivalDateTime).format("YYYY-MM-DD");
+        travel.arrivalDateTime = moment(travel.arrivalDateTime).format("YYYY-MM-DD");
       }
 
       return travel;
