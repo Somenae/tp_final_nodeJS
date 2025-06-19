@@ -2,44 +2,47 @@
 <h1>Mon index</h1>
 <table>
   <thead>
-    <tr>
-      <th>Id</th>
+    <tr>  
       <th>Départ</th>
       <th>Destination</th>
       <th>Date de départ</th>
       <th>Date d'arrivée</th>
-      <th>Prix</th>
-      <th>Statut</th>
-      <th>Nbr de places</th>
-      <th href="/trips/create">Create</th>
+      <% if (isAuthenticated) { %>
+        <th>Détails</th>
+      <% } %>
+      <% if (isAdmin && isAuthenticated) { %>
+        <th>Inscriptions</th>
+        <th>Paiements</th>
+        <th>Gérer</th>
+      <% } %>
     </tr>
   </thead>
 
   <tbody>
     <% trips.forEach(trip => { %>
     <tr>
-      <td><%= trip._id %></td>
       <td><%= trip.departure %></td>
       <td><%= trip.destination %></td>
       <td><%= trip.departureDateTime %></td>
       <td><%= trip.arrivalDateTime %></td>
-      <td><%= trip.price %></td>
-      <td><%= trip.status %></td>
-      <td><%= trip.places %></td>
-      <!-- <td>
-        <a href="/api/trips/toggle-done/< trip.id %>">< trip.done%></a>
-      </td> -->
+      <% if (isAuthenticated) { %>
+        <td><a href="/api/trips/<%= trip.id %>">Détails</a></td>
+      <% } %>
+      <% if (isAdmin && isAuthenticated) { %>
+        <td><a href="/api/registrations/trip/<%= trip.id %>">Voir</a></td>
+        <td><a href="/api/payments/trip/<%= trip.id%>">Voir</a></td>
       <td>
-        <a href="/api/trips/edit/<%= trip.id%>">Edit</a>
+        <a href="/api/trips/edit/<%= trip.id%>">Modifier</a>
         <form action="/api/trips/<%= trip.id%>" method="POST">
           <input type="hidden" name="_method" value="DELETE" />
           <input
             type="submit"
-            value="Delete"
+            value="Supprimer"
             onclick="return confirm('Êtes-vous sûr de vouloir supprimer?')"
           />
         </form>
       </td>
+      <% } %>
     </tr>
     <% }); %>
   </tbody>

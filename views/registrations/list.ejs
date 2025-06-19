@@ -1,0 +1,39 @@
+<%- contentFor('title') %>Mes voyages
+<%- contentFor('main') %>
+
+<% if(userRegistration.length > 0) { %>
+    <table>
+    <thead>
+        <tr>  
+        <th>Départ</th>
+        <th>Destination</th>
+        <th>Date de départ</th>
+        <th>Date d'arrivée</th>
+        <th>Gérer</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <% userRegistration.forEach(trip => { %>
+        <tr>
+        <td><%= trip.travel.departure %></td>
+        <td><%= trip.travel.destination %></td>
+        <td><%= trip.travel.departureDateTime %></td>
+        <td><%= trip.travel.arrivalDateTime %></td>
+        <td>
+            <form action="/api/registrations/<%= trip._id%>" method="POST">
+            <input type="hidden" name="_method" value="DELETE" />
+            <input
+                type="submit"
+                value="Supprimer"
+                onclick="return confirm('Voulez-vous vraiment supprimer votre inscription ?')"
+            />
+            </form>
+        </td>
+        </tr>
+        <% }); %>
+    </tbody>
+    </table>
+<% } else { %>
+    <p>Aucun voyage de prévu</p>
+<% } %>

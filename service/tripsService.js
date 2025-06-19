@@ -19,15 +19,15 @@ class TripsService {
     }
   }
 
-  async getTravelById(id) {
+  async getTripById(id) {
     try {
-      const travel = await this.tripsRepository.findByPk(id);
-      if (!travel) {
-        return new Error("No travels found");
+      const trip = await this.tripsRepository.findByPk(id);
+      if (!trip) {
+        return new Error("No trips found");
       }
-      return travel;
+      return trip;
     } catch (error) {
-      throw new Error("Error fetching travel: " + error.message);
+      throw new Error("Error fetching trip: " + error.message);
     }
   }
 

@@ -1,13 +1,13 @@
 const mongoose = require('mongoose');
 
-const inscriptionsSchema = new mongoose.Schema({
+const registrationsSchema = new mongoose.Schema({
     userId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Users'
     },
     travel: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Travels'
+        ref: 'Trips'
     },
     document: [{
         title: {
@@ -26,4 +26,4 @@ const inscriptionsSchema = new mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model('Inscriptions', inscriptionsSchema);
+module.exports = mongoose.model('Registrations', registrationsSchema);

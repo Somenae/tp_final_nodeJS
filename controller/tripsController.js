@@ -53,22 +53,22 @@ class TravelController {
     }
   };
 
+  seeOne = async (req, res) => {
+    try {
+      const trip = await this.tripsService.getTripById(req.params.id);
+      res.render("trips/details", { trip: trip });
+    } catch (error) {
+      throw new Error(`Error: ${error.message}`);
+      
+    }
+  }
+
   delete = async (req, res) => {
     try {
       await this.tripsService.deleteTrip(req.params.id);
       res.redirect("/api/trips");
     } catch (error) {
       console.error("Error deleting trip: ", error);
-      return res.status(500).send("Internal Server Error");
-    }
-  };
-
-  toggleDone = async (req, res) => {
-    try {
-      await this.tripsService.toggleDone(req.params.id);
-      res.redirect("/api/trips");
-    } catch (error) {
-      console.error("Error toggling travel status: ", error);
       return res.status(500).send("Internal Server Error");
     }
   };

@@ -1,12 +1,13 @@
 const express = require("express");
 const router = express.Router();
 const controller = require("../controller/tripsController");
+const { isAdmin, isAuthenticated } = require('../middleware/auth')
 
 router.get("", controller.index);
-router.get("/create", controller.create);
-router.get("/edit/:id", controller.edit);
+router.get("/create", isAdmin, controller.create);
+router.get("/edit/:id", isAdmin, controller.edit);
+router.get("/:id", isAuthenticated, controller.seeOne)
 
-router.get("/toggle-done/:id", controller.toggleDone);
 router.post("/store", controller.store);
 router.post("/update/:id", controller.update);
 router.delete("/:id", controller.delete);

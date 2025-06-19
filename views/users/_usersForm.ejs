@@ -1,0 +1,29 @@
+<div>
+  <label for="lastname">Nom</label>
+  <input
+    type="text"
+    id="lastname"
+    name="lastname"
+    value="<%= typeof user != 'undefined' ? user.lastname : '' %>"
+  />
+</div>
+
+<div>
+  <label for="firstname">Prénom</label>
+  <input
+    type="text"
+    id="firstname"
+    name="firstname"
+    value="<%= typeof user != 'undefined' ? user.firstname : '' %>"
+  />
+</div>
+
+<div>
+  <label for="mail">Email</label>
+  <input
+    type="email"
+    id="mail"
+    name="email"
+    value="<%= typeof user != 'undefined' ? user.email : '' %>"
+  />
+</div>

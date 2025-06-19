@@ -1,0 +1,40 @@
+<%- contentFor('title') %>Mes paiements
+<%- contentFor('main') %>
+
+<% if(userTrips.length > 0) { %>
+    <table>
+    <thead>
+        <tr>  
+        <th>Départ</th>
+        <th>Destination</th>
+        <th>Prix</th>
+        <th>Statut du paiment</th>
+        <th>Gérer</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <% userTrips.forEach(trip => { %>
+        <tr>
+        <td><%= trip.travel.departure %></td>
+        <td><%= trip.travel.destination %></td>
+        <td><%= trip.travel.price %></td>
+        <td><%= trip.paymentStatus %></td>
+        <td>
+            <% if( trip.paymentStatus === 'pending') { %>
+                <form action="/api/payments/<%= trip._id%>" method="POST">
+                <input
+                    type="submit"
+                    value="Payer"
+                    onclick="return confirm('Voulez-vous vraiment payer ?')"
+                />
+                </form>
+            <% } %>
+        </td>
+        </tr>
+        <% }); %>
+    </tbody>
+    </table>
+<% } else { %>
+    <p>Aucun voyage de prévu</p>
+<% } %>

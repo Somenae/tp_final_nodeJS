@@ -1,0 +1,28 @@
+<%- contentFor('title') %>Votre profile
+<%- contentFor('main') %>
+<table>
+  <thead>
+    <tr>
+      <th>Nom</th>
+      <th>Prénom</th>
+      <th>Mail</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td><%= user.lastname %></td>
+      <td><%= user.firstname %></td>
+      <td><%= user.email %></td>
+  </tbody>
+</table>
+
+<form action="/api/user/profile" method="POST">
+    <input type="hidden" name="_method" value="PUT" />
+    <%- include('_usersForm') %>
+    <input
+        type="submit"
+        value="Modifier"
+        onclick="return confirm('Êtes-vous sûr de vouloir mettre à jour votre profile ?')"
+    />
+</form>

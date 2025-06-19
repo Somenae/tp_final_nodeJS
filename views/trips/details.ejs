@@ -1,0 +1,33 @@
+<%- contentFor('title') %>Liste des voyages <%- contentFor('main') %>
+<h1>Mon index</h1>
+<table>
+  <thead>
+    <tr>  
+      <th>Départ</th>
+      <th>Destination</th>
+      <th>Date de départ</th>
+      <th>Date d'arrivée</th>
+      <th>Prix</th>
+      <th>Statut</th>
+      <th>Nbr de places</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td><%= trip.departure %></td>
+      <td><%= trip.destination %></td>
+      <td><%= trip.departureDateTime %></td>
+      <td><%= trip.arrivalDateTime %></td>
+      <td><%= trip.price %></td>
+      <td><%= trip.status %></td>
+      <td><%= trip.places %></td>
+    </tr>
+  </tbody>
+</table>
+
+<% if (isMember) { %>
+  <form action="/api/registrations/<%= trip.id %>" method="post">
+      <button type="submit">S'inscrire</button>
+  </form>
+<% } %>

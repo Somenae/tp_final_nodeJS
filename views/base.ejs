@@ -12,8 +12,23 @@
     <header>
       <nav>
         <ul>
-          <li><a href="/api/trips">Liste des voyages</a></li>
-          <li><a href="/api/trips/create">Créer un voyage</a></li>
+          <% if(!isAuthenticated) {%>
+            <li><a href="/api/auth/signup">Créer un compte</a></li>
+            <li><a href="/api/auth/login">Se connecter</a></li>
+          <% } else { %>
+            <li><a href="/api/auth/logout">Se déconnecter</a></li>
+          <% } %>
+           <li><a href="/api/trips">Liste des voyages</a></li>
+          <% if(isAdmin) { %>
+            <li><a href="/api/trips/create">Créer un voyage</a></li>
+          <% } %>
+          <% if(isAuthenticated) { %>
+            <li><a href="/api/user/profile">Voir son profile</a></li>
+            <% if (isMember) { %>
+              <li><a href="/api/registrations/me">Mes voyages</a></li>
+              <li><a href="/api/payments/me">Mes paiements</a></li>
+            <% } %>
+          <% } %>
         </ul>
       </nav>
     </header>

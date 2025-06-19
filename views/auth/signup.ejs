@@ -1,0 +1,5 @@
+<%- contentFor('title') %>Créer un compte
+<%- contentFor('main') %>
+<form action="/api/auth/signup" method="post">
+    <%- include('_authForm') %>
+</form>

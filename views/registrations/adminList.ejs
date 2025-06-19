@@ -1,0 +1,26 @@
+<%- contentFor('title') %>Liste des inscrits
+<%- contentFor('main') %>
+<% if (registeredUsers.length > 0) { %>
+    <h2>Utilisateurs inscrits pour le voyage <%= registeredUsers[0].travel.departure %> - <%= registeredUsers[0].travel.destination %></h2>
+    <table>
+        <thead>
+            <tr>  
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Mail</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <% registeredUsers.forEach(user => { %>
+            <tr>
+                <td><%= user.userId.lastname %></td>
+                <td><%= user.userId.firstname %></td>
+                <td><%= user.userId.email %></td>
+            </tr>
+            <% }); %>
+        </tbody>
+    </table>
+<% } else { %>
+    <h2>Pas d'inscrits</h2>
+<% } %>
