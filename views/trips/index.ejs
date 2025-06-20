@@ -7,11 +7,13 @@
       <th>Destination</th>
       <th>Date de départ</th>
       <th>Date d'arrivée</th>
+      <th>Documents nécessaires</th>
       <% if (isAuthenticated) { %>
         <th>Détails</th>
       <% } %>
       <% if (isAdmin && isAuthenticated) { %>
         <th>Inscriptions</th>
+        <th>Documents reçus</th>
         <th>Paiements</th>
         <th>Gérer</th>
       <% } %>
@@ -25,12 +27,14 @@
       <td><%= trip.destination %></td>
       <td><%= trip.departureDateTime %></td>
       <td><%= trip.arrivalDateTime %></td>
+      <td><a href="/api/documents/<%= trip.id %>">Voir</a></td>
       <% if (isAuthenticated) { %>
         <td><a href="/api/trips/<%= trip.id %>">Détails</a></td>
       <% } %>
       <% if (isAdmin && isAuthenticated) { %>
         <td><a href="/api/registrations/trip/<%= trip.id %>">Voir</a></td>
-        <td><a href="/api/payments/trip/<%= trip.id%>">Voir</a></td>
+        <td><a href="/api/documents/trip/<%= trip.id %>">Voir</a></td>
+        <td><a href="/api/payments/trip/<%= trip.id %>">Voir</a></td>
       <td>
         <a href="/api/trips/edit/<%= trip.id%>">Modifier</a>
         <form action="/api/trips/<%= trip.id%>" method="POST">

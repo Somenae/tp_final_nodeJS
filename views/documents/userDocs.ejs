@@ -1,0 +1,34 @@
+<%- contentFor('title') %>Liste des documents
+<%- contentFor('main') %>
+
+<% if (documents.length > 0) { %>
+    <table>
+        <thead>
+            <tr>  
+                <th>Départ</th>
+                <th>Destination</th>
+                <th>Documents</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <% documents.forEach(trip => { %>
+            <tr>
+                <td><%= trip.travel.departure %></td>
+                <td><%= trip.travel.destination %></td>
+                <td>
+                    <% if (trip.document.length > 0) { %>
+                        <% trip.document.forEach(document => { %>
+                            <p><%= document.title %></p>
+                        <% }); %>
+                    <% } else { %>
+                        <p>Pas de documents envoyés</p>
+                    <% } %>
+                </td>
+            </tr>
+            <% }); %>
+        </tbody>
+    </table>
+<% } else { %>
+    <h2>Pas de voyage prévu</h2>
+<% } %>

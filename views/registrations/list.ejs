@@ -9,19 +9,21 @@
         <th>Destination</th>
         <th>Date de départ</th>
         <th>Date d'arrivée</th>
+        <th>Envoie document</th>
         <th>Gérer</th>
         </tr>
     </thead>
 
     <tbody>
-        <% userRegistration.forEach(trip => { %>
+        <% userRegistration.forEach(registration => { %>
         <tr>
-        <td><%= trip.travel.departure %></td>
-        <td><%= trip.travel.destination %></td>
-        <td><%= trip.travel.departureDateTime %></td>
-        <td><%= trip.travel.arrivalDateTime %></td>
+        <td><%= registration.travel.departure %></td>
+        <td><%= registration.travel.destination %></td>
+        <td><%= registration.travel.departureDateTime %></td>
+        <td><%= registration.travel.arrivalDateTime %></td>
+        <td><a href="/api/documents/send/<%= registration._id %>">Envoyer</a></td>
         <td>
-            <form action="/api/registrations/<%= trip._id%>" method="POST">
+            <form action="/api/registrations/<%= registration._id%>" method="POST">
             <input type="hidden" name="_method" value="DELETE" />
             <input
                 type="submit"

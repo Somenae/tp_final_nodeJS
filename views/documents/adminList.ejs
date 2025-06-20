@@ -1,0 +1,36 @@
+<%- contentFor('title') %>Liste des documents
+<%- contentFor('main') %>
+<h2>Documents reçus pour le voyage <%= tripDetails[0].travel.departure %> - <%= tripDetails[0].travel.destination %></h2>
+<% if (tripDetails.length > 0) { %>
+    <table>
+        <thead>
+            <tr>  
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Mail</th>
+                <th>Documents</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <% tripDetails.forEach(user => { %>
+            <tr>
+                <td><%= user.userId.lastname %></td>
+                <td><%= user.userId.firstname %></td>
+                <td><%= user.userId.email %></td>
+                <td>
+                    <% if (user.document.length > 0) { %>
+                        <% user.document.forEach(document => { %>
+                            <p><%= document.title %></p>
+                        <% }); %>
+                    <% } else { %>
+                        <p>Pas de documents reçu</p>
+                    <% } %>
+                </td>
+            </tr>
+            <% }); %>
+        </tbody>
+    </table>
+<% } else { %>
+    <h2>Pas de document reçu</h2>
+<% } %>

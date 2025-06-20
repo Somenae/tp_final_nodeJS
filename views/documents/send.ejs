@@ -1,0 +1,5 @@
+<%- contentFor('title') %>Envoie de document
+<%- contentFor('main') %>
+<form action="/api/documents/<%= registrationId %>" method="post" enctype="multipart/form-data">
+    <%- include('_sendDocumentForm') %>
+</form>

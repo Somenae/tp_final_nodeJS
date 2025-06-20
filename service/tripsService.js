@@ -100,20 +100,6 @@ class TripsService {
       throw new Error("Error deleting travel: " + error.message);
     }
   }
-
-  async toggleDone(id) {
-    try {
-      const travel = await this.tripsRepository.findByPk(id);
-      if (!travel) {
-        throw new Error("Travel not found");
-      }
-      travel.done = !travel.done;
-      await travel.save();
-      return { message: "Travel status toggled successfully" };
-    } catch (error) {
-      throw new Error("Error toggling travel status: " + error.message);
-    }
-  }
 }
 
 module.exports = new TripsService();

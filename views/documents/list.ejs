@@ -1,0 +1,30 @@
+<%- contentFor('title') %>Liste des documents
+<%- contentFor('main') %>
+<h2>Liste des documents pour le voyage <%= departure %> - <%= destination %></h2>
+
+<% if (isAdmin && isAuthenticated) { %>
+    <a href="/api/documents/add/<%= tripId %>">Ajouter un document</a>
+<% } %>
+
+<% if(requiredDocuments.length > 0) { %>
+    <table>
+    <thead>
+        <tr>  
+            <th>Document</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <% requiredDocuments.forEach(document => { %>
+        <tr>
+            <td><%= document.title %></td>
+            <td><%= document.description %></td>
+        </tr>
+        <% }); %>
+    </tbody>
+    </table>
+<% } else { %>
+    <p>Aucun documents nécessaire pour ce voyage</p>
+<% } %>
+ 

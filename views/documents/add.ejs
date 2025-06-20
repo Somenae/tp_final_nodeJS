@@ -1,0 +1,5 @@
+<%- contentFor('title') %>Ajouter un document
+<%- contentFor('main') %>
+<form action="/api/documents/add/<%= tripId %>" method="post">
+    <%- include('_addDocumentsForm') %>
+</form>

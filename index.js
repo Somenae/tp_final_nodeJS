@@ -8,6 +8,7 @@ const authRouter = require("./router/authRouter");
 const usersRouter = require("./router/usersRouter");
 const registrationsRouter = require('./router/registrationsRouter');
 const paymentsRouter = require('./router/paymentsRouter');
+const documentsRouter = require('./router/documentsRouter');
 const connectDB = require('./configs/db');
 const cors = require("cors");
 const { setUserDatas } = require("./middleware/auth");
@@ -53,6 +54,7 @@ app.use("/api/auth", authRouter);
 app.use("/api/user", usersRouter);
 app.use("/api/registrations", registrationsRouter);
 app.use("/api/payments", paymentsRouter);
+app.use("/api/documents", documentsRouter);
 
 app.listen(port, () => {
   console.log(`Server run  http://localhost:${port}`);
