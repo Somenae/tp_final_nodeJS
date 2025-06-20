@@ -43,6 +43,7 @@ class documentsController {
         }
     }
 
+    // Save sent document un public/documents
     storeDocument = async (req, res) => {
         try {
             await this.documentsService.saveDocument(req);
