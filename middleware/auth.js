@@ -3,7 +3,6 @@ const jwt = require('jsonwebtoken');
 
 const setUserDatas = async (req, res, next) => {
     try {
-        
         const token = req.cookies.token;
 
         if (!token) {

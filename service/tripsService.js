@@ -54,10 +54,13 @@ class TripsService {
   async updateTravel(id, travelData) {
     try {
       const travel = await this.tripsRepository.findByPk(id);
+      
       if (!travel) {
         throw new Error("Travel not found");
       }
+
       const updated = await this.tripsRepository.update(id, travelData);
+
       if (!updated) {
         return new Error("No travels found");
       }

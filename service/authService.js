@@ -58,17 +58,15 @@ class authService {
                     expiresIn: '24h'
                 }
             );
-            
-            this.generateSecureCookie(token, res);
 
-            return true;
+            return token;
 
         } catch (error) {
             throw new Error("Error during login : " + error.message);
         }
     }
 
-    generateSecureCookie (token, response) {
+    generateSecureCookie = async (token, response) => {
         const responseCookie = {
             httpOnly: true,
             secure: false,

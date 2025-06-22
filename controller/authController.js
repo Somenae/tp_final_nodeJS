@@ -35,8 +35,9 @@ class authController {
 
     loginIn = async (req, res) => {
         try {
-            const logged = await this.authService.login(req.body, res);
-            if (logged) {
+            const token = await this.authService.login(req.body);
+            if (token) {
+                await this.authService.generateSecureCookie(token, res);
                 return res.redirect("/api/trips");
             }
             return res.redirect('/api/auth/login');
