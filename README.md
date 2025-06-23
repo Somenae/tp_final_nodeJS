@@ -19,3 +19,5 @@ Plusieurs fonctionnalités seront à ajouter, ou améliorer (liste non exhaustiv
 - Rajouter plus de tests unitaires, et plus précis
 
 - Faire en sorte de renvoyer les erreurs en messages dans le front, et pas en JSON
+
+- Rajouter du style
