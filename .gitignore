@@ -3,5 +3,5 @@ node_modules/
 package-lock.json
 public/documents/*
 !public/documents/
-public/documents/.gitkeep
+!public/documents/.gitkeep
 zz_help/
