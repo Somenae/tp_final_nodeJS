@@ -6,7 +6,7 @@ class UsersService {
     }
 
     updateUser = async (user, datas) => {
-        this.usersRepository.update(user.id, datas);
+        await this.usersRepository.update(user.id, datas);
     }
 }
 
