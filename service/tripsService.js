@@ -40,8 +40,10 @@ class TripsService {
       if (TravelData.price) {
         TravelData.price = parseFloat(TravelData.price);
       }
-
+      console.log(TravelData);
+      
       const newTravel = await this.tripsRepository.create(TravelData);
+
       if (!newTravel) {
         return new Error("No travels found");
       }
@@ -58,7 +60,7 @@ class TripsService {
       if (!travel) {
         throw new Error("Travel not found");
       }
-
+      
       const updated = await this.tripsRepository.update(id, travelData);
 
       if (!updated) {

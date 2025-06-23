@@ -18,7 +18,14 @@ class tripsRepository {
   }
 
   async update(id, options) {
-    return this.trips.findByIdAndUpdate(id, options);
+    const trip = await this.trips.findById(id);
+    if (!trip) return null;
+      Object.keys(options).forEach(key => {
+    if (options[key] !== undefined) {
+      trip[key] = options[key];
+    }
+    });
+    return trip.save();
   }
 
   async delete(options) {
